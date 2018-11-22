@@ -1,2 +1,3 @@
 # pdftocsv
-CLI tool to convert pdf tables to csv
+
+CLI tool to convert PDF table to CSV
