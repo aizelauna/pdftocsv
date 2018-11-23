@@ -1,5 +1,10 @@
-from pdftocsv import log_start
+import argparse
+from .pdftocsv import convert_to_csv
 
 def main():
-    log_start()
-    print("main")
+    parser = argparse.ArgumentParser(description='Convert PDF table to CSV')
+    parser.add_argument('pdf',
+        help='path to pdf containing the table(s) to extract')
+    args = parser.parse_args()
+
+    convert_to_csv(args.pdf)
