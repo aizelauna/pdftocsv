@@ -1,3 +1,4 @@
+import logging
 import xml.etree.ElementTree as ET
 
 def convert_to_csv(xml):
@@ -5,5 +6,5 @@ def convert_to_csv(xml):
 
     for page in root:
         for text in page.iter('text'):
-            print(text.attrib, text.text)
+            logging.info("%s %s", text.attrib, text.text)
         break
