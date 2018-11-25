@@ -1,9 +1,10 @@
 import xml.etree.ElementTree as ET
-from pdftocsv.pdftohtml import convert_to_xml
+from pdftocsv.pdftoxml import convert_to_xml, cleanup_xml
 
 def test_convert_to_xml():
     # Convert pdf to xml
     xml = convert_to_xml("tests/assets/trail-fleur-de-lys-2018.pdf")
+    xml = cleanup_xml(xml)
 
     # Check that important tags and attributes are correctly converted
     root = ET.fromstring(xml)
@@ -18,7 +19,7 @@ def test_convert_to_xml():
 
     texts = pages[0].findall('text')
     assert len(texts) == 265
-    assert texts[0].find('b').text == 'Pl.'
+    assert texts[0].text == 'Pl.'
     assert texts[0].attrib['top'] == '111'
     assert texts[0].attrib['left'] == '95'
     assert texts[0].attrib['width'] == '18'

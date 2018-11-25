@@ -1,7 +1,7 @@
 import argparse
 import sys
 from logging import basicConfig, DEBUG, INFO, WARNING
-from .pdftohtml import convert_to_xml
+from .pdftoxml import convert_to_xml, cleanup_xml
 from .xmltocsv import convert_to_csv
 
 def main():
@@ -20,5 +20,7 @@ def main():
         basicConfig(stream=sys.stdout, level=WARNING, format="%(message)s")
 
     xml = convert_to_xml(args.pdf)
+
+    xml = cleanup_xml(xml)
 
     csv = convert_to_csv(xml)
